@@ -4,36 +4,31 @@ import { removeSource, formatDate } from '../utils/helpers';
 
 class Detail extends Component {
   render() {
-    const { route } = this.props;
     const {
-      news: {
-        author,
-        title,
-        description,
-        urlToImage,
-        publishedAt,
-        content,
-        source,
+      route: {
+        params: { news },
       },
-    } = route.params;
+    } = this.props;
     return (
       <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.container}>
           <View style={styles.newsInfoContainer}>
-            <Text style={styles.newsInfoSource}>{source.name}</Text>
-            <Text style={styles.newsInfoDate}>{formatDate(publishedAt)}</Text>
+            <Text style={styles.newsInfoSource}>{news.source.name}</Text>
+            <Text style={styles.newsInfoDate}>
+              {formatDate(news.publishedAt)}
+            </Text>
           </View>
-          <Text style={styles.newsTitle}>{removeSource(title)}</Text>
-          <Text style={styles.newsAuthor}>Author: {author || '-'}</Text>
+          <Text style={styles.newsTitle}>{removeSource(news.title)}</Text>
+          <Text style={styles.newsAuthor}>Author: {news.author || '-'}</Text>
           <Image
             style={styles.newsImage}
             source={{
-              uri: urlToImage,
+              uri: news.urlToImage,
             }}
             resizeMode="stretch"
           />
-          <Text style={styles.newsDesc}>{description}</Text>
-          <Text style={styles.newsDesc}>{content}</Text>
+          <Text style={styles.newsDesc}>{news.description}</Text>
+          <Text style={styles.newsDesc}>{news.content}</Text>
           <Text style={styles.newsDesc}>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin
             iaculis quis magna commodo viverra. In sed turpis nisi. Fusce non
@@ -103,22 +98,5 @@ const styles = StyleSheet.create({
     fontSize: 15,
   },
 });
-
-Detail.options = {
-  topBar: {
-    title: {
-      text: 'Detail News',
-      color: 'black',
-      fontFamily: 'Lato-Bold',
-      fontSize: 19,
-      alignment: 'center',
-    },
-    elevation: 2,
-  },
-  statusBar: {
-    backgroundColor: 'white',
-    style: 'dark',
-  },
-};
 
 export default Detail;

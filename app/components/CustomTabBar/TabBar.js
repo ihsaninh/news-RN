@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/Feather';
 
 import { styles } from './TabBar.style';
 
-export const CustomTabTar = ({ state, descriptors, navigation, bottom }) => {
+export const CustomTabTar = ({ state, descriptors, navigation }) => {
   return (
     <View style={styles.tabBarContainer}>
       {state.routes.map((route, index) => {
