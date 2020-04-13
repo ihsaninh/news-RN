@@ -1,10 +1,9 @@
 import React, { useState } from 'react';
-import { Text, View, StyleSheet, Image } from 'react-native';
+import { Text, View, StyleSheet, Image, FlatList } from 'react-native';
 
 import { SearchNews } from '../utils/constants';
 import { NewsList } from '../screens/Home/components/newslist';
 import { HeaderSearch } from '../components/HeaderSearch/Header';
-import { FlatList } from 'react-native-gesture-handler';
 
 function Search({ navigation }) {
   const [value, onChangeText] = useState('');
