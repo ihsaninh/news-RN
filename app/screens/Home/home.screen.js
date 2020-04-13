@@ -4,18 +4,21 @@ import { View, FlatList } from 'react-native';
 import { NewsList } from './components/newslist';
 import { Searchbar } from './components/searchbar';
 import { styles } from './home.style';
-import { BaseUrl } from '../../utils/constants';
+import { NewsPaging } from '../../utils/constants';
 import { CategoryList } from './components/categorylist';
 import { LoadingIndicator } from '../../components/LoadingIndicator/loading';
 
 class Home extends Component {
-  state = {
-    news: [],
-    error: '',
-    loading: false,
-    page: 1,
-    totalResult: 0,
-  };
+  constructor(props) {
+    super(props);
+    this.state = {
+      news: [],
+      error: '',
+      loading: false,
+      page: 1,
+      totalResult: 0,
+    };
+  }
 
   componentDidMount() {
     this.getNewsData();
@@ -25,7 +28,7 @@ class Home extends Component {
     const { page, news } = this.state;
     try {
       this.setState({ loading: true });
-      const response = await fetch(BaseUrl(page));
+      const response = await fetch(NewsPaging(page));
       const result = await response.json();
       this.setState({
         news: [...news, ...result.articles],
@@ -52,6 +55,11 @@ class Home extends Component {
     navigation.navigate('Detail', { news: item });
   };
 
+  toSearchNews = () => {
+    const { navigation } = this.props;
+    navigation.navigate('Search');
+  };
+
   renderCategoryList = () => {
     return <CategoryList {...this.props} />;
   };
@@ -74,7 +82,7 @@ class Home extends Component {
     return (
       <Searchbar
         title="Apa yang ingin kamu baca?"
-        onPress={this.toDetailNews}
+        onPress={this.toSearchNews}
         {...this.props}
       />
     );

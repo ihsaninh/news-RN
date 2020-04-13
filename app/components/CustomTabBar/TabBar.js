@@ -62,7 +62,7 @@ export const CustomTabTar = ({ state, descriptors, navigation }) => {
             key={index}
             onLongPress={onLongPress}>
             <View style={styles.tabBarContent}>
-              <Icon name={icon} size={22} color={isFocused ? 'red' : 'grey'} />
+              <Icon name={icon} size={18} color={isFocused ? 'red' : 'grey'} />
               <Text
                 style={isFocused ? styles.labelFocused : styles.labelUnFocused}>
                 {label}

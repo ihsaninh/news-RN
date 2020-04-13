@@ -16,12 +16,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   labelFocused: {
-    paddingTop: 5,
+    paddingTop: 8,
     color: 'red',
     fontSize: 11,
   },
   labelUnFocused: {
-    paddingTop: 5,
+    paddingTop: 8,
     color: 'grey',
     fontSize: 11,
   },

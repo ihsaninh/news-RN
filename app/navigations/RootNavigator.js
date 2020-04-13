@@ -6,7 +6,7 @@ import {
 import Icon from 'react-native-vector-icons/Feather';
 
 import { TabNavigation } from './TabNavigator';
-import { Detail } from '../screens';
+import { Detail, Search } from '../screens';
 
 const Stack = createStackNavigator();
 
@@ -36,7 +36,7 @@ export const RootNavigation = () => {
         headerBackImage: () => <Icon name="chevron-left" size={26} />,
       }}>
       <Stack.Screen
-        name="Tab"
+        name="ID News"
         component={TabNavigation}
         options={({ route }) => ({
           ...options,
@@ -47,6 +47,11 @@ export const RootNavigation = () => {
         name="Detail"
         component={Detail}
         options={{ ...options, title: 'Detail News' }}
+      />
+      <Stack.Screen
+        name="Search"
+        component={Search}
+        options={{ ...options, title: 'Search News' }}
       />
     </Stack.Navigator>
   );
