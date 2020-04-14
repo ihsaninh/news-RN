@@ -7,8 +7,10 @@ import { HeaderSearch } from '../components/HeaderSearch/Header';
 
 function Search({ navigation }) {
   const [value, onChangeText] = useState('');
-  const [news, setNews] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [data, setData] = useState({
+    news: [],
+    loading: false,
+  });
 
   navigation.setOptions({
     header: () => (
@@ -22,11 +24,17 @@ function Search({ navigation }) {
 
   const getSearchNews = async () => {
     try {
-      setLoading(true);
+      setData({
+        ...data,
+        loading: true,
+      });
       const response = await fetch(SearchNews(value));
-      const result = await response.json();
-      setLoading(false);
-      setNews(result.articles);
+      const { articles } = await response.json();
+      setData({
+        ...data,
+        loading: false,
+        news: articles,
+      });
     } catch (err) {
       throw err;
     }
@@ -67,10 +75,10 @@ function Search({ navigation }) {
   return (
     <View style={styles.container}>
       <FlatList
-        data={news}
+        data={data.news}
         renderItem={renderItem}
         onRefresh={getSearchNews}
-        refreshing={loading}
+        refreshing={data.loading}
         ListEmptyComponent={renderEmpty}
         keyExtractor={(_, i) => i.toString()}
       />
