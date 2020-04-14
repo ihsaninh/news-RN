@@ -41,7 +41,9 @@ function Search({ navigation }) {
   };
 
   const toDetailNews = (item) => () => {
-    navigation.navigate('Detail', { news: item });
+    navigation.navigate('Detail', {
+      news: item,
+    });
   };
 
   const renderItem = ({ item }) => {
